@@ -1,45 +1,49 @@
-
-typedef struct no{
+typedef struct no
+{
 	/* data */
 	int inf;
 	struct no * next;
 }NO;
 
-typedef struct{
+typedef struct
+{
 	NO * INICIO;
 	NO * FIM;
 }DESCRITOR;
 
 typedef DESCRITOR * FILA_ENC;
 
-void cria_fila(FILA_ENC *f){
+void cria_fila(FILA_ENC *f)
+{
 	*f = (DESCRITOR *)malloc(sizeof(DESCRITOR));
 	if (f == NULL){
-		printf ("Erro na alocação da memoria!\n");
-		exit (1);
+		printf ("Erro na alocacao da fila!\n");
+		exit(0);
 	}
 	(*f)->INICIO = (*f)->FIM = NULL;
 }
 
-int fila_vazia(FILA_ENC f){
+int fila_vazia(FILA_ENC f)
+{
 	if(f->INICIO==NULL)
 		return 1;
 	else
 		return 0;	
 }
 
-void enfileira(FILA_ENC *f, int valor){
+void enfileira(FILA_ENC *f, int valor)
+{
 	NO *novo;
 	novo = (NO*)malloc(sizeof(NO));
-	if (novo == NULL){
-		printf ("Errou na alocacao da memoria!\n");
-		exit(0);
-	}
+	//teste de alocacao
 	novo->inf = valor;
 	novo->next = NULL;
-	if(fila_vazia(*f)){
+	if(fila_vazia(*f))
+	{
 		(*f)->INICIO = (*f)->FIM = novo;
-	}else{
+	}
+	else
+	{
 		(*f)->FIM->next = novo;
 		(*f)->FIM = novo;
 	}
@@ -47,6 +51,8 @@ void enfileira(FILA_ENC *f, int valor){
 
 int desenfileira(FILA_ENC *f){
 	int valor;
+	//verifica se fila nao eh vazia
+
 	valor = (*f)->INICIO->inf;
 	NO * aux;
 	aux = (*f)->INICIO;
@@ -59,13 +65,22 @@ int desenfileira(FILA_ENC *f){
 
 }
 
-void imprime_fila(FILA_ENC f){
+void imprime_fila(FILA_ENC f)
+{
 	while(f->INICIO!=NULL)
 	{
-		printf("%d ", (*f)->INICIO->inf);
-		(*f)->INICIO = (*f)->INICIO->next;
+		printf("%d ", f->INICIO->inf);
+		f->INICIO = f->INICIO->next;
 	}
 	printf("\n");
 }
+
+
+
+
+
+
+
+
 
 
